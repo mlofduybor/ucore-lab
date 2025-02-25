@@ -1,0 +1,154 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0" version="26.0.16">
+  <diagram name="第 1 页" id="8LOPwf5YduBKm0PsOfqm">
+    <mxGraphModel dx="1604" dy="1714" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-46" y="1453" width="221" height="243" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-28" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="-46" y="1195" width="222" height="243" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-26" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="-46" y="941" width="223" height="243" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-19" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="-46" y="593" width="223" height="339" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="-46" y="158" width="221" height="427" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-1" target="xZXwR7hzgNqL0oa4mkAj-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-1" value="程序A" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="264" y="-78" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-3" target="xZXwR7hzgNqL0oa4mkAj-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-3" value="时钟中断发生" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="-0.5" y="83" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-5" target="xZXwR7hzgNqL0oa4mkAj-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-5" value="进入到异常向量处理函数中，并将此时进入到异常向量处理函数前的最后执行的指令的地址给保存到sepc寄存器中" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="-0.5" y="197" width="120" height="121" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-7" target="xZXwR7hzgNqL0oa4mkAj-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-7" value="从sscratch得到程序A的trapframe" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="-0.5" y="352" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-9" value="首先将寄存器保存到trapframe中，包括sepc寄存器，然后切换此时的栈指针到内核栈，然后进入到trapframe.kernel_trap的地址中" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="-0.5" y="439" width="120" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-12" value="uservec" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="103" y="163" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-13" value="从scause寄存器中获得异常原因并处理" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-0.5" y="603" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-9" target="xZXwR7hzgNqL0oa4mkAj-13" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="354" y="483" as="sourcePoint" />
+            <mxPoint x="404" y="433" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-15" target="xZXwR7hzgNqL0oa4mkAj-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-15" value="发现是时钟中断，于是重新进行计时器重置，然后执行yield自陷操作，自陷操作则是先将该进程的状态设置为就绪态（runable)，然后执行调度sched()，最终调用swtch函数进行该进程与主进程的切换" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry y="716" width="120" height="198" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-17" target="xZXwR7hzgNqL0oa4mkAj-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-17" value="此时ra保存swtch返回的地址，然后进入到swtch函数中，该函数将任务上下文给保存到pcb的任务上下文成员中，包括ra寄存器，然后将主进程的任务上下文给恢复到cpu的寄存器中，然后ret返回到ra寄存器记录的地址中" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry y="956" width="120" height="199" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-20" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="xZXwR7hzgNqL0oa4mkAj-13" target="xZXwR7hzgNqL0oa4mkAj-15" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="394" y="645" as="sourcePoint" />
+            <mxPoint x="444" y="595" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-21" value="usertrap" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="119.5" y="599" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-24" value="返回到scheduler最后的swtch函数的地方往下继续执行，检查进程池，发现下一个pcb中的进程状态为就绪态，故将当前进程指针指向该pcb，然后swtch函数调换主进程和即将调度的进程" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="-0.5" y="1226" width="120" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="xZXwR7hzgNqL0oa4mkAj-27" value="swtch" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="-53" y="947" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-2" value="此时ra保存swtch返回的地址，然后进入到swtch函数中，该函数将主进程任务上下文给保存到pcb的任务上下文成员中，包括ra寄存器，然后将需要调度的进程的任务上下文给恢复到cpu的寄存器中，然后ret返回到ra寄存器记录的地址中" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-0.5" y="1478" width="120" height="191" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="xZXwR7hzgNqL0oa4mkAj-24" target="oxNQAoPYV9vJhSYu_cqy-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="1457" as="sourcePoint" />
+            <mxPoint x="310" y="1407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="-46" y="1714" width="224" height="243" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-6" value="回到需要调度程序中，此时正是usertrap中swtch的位置，接着继续执行下去，即进入到函数usertrapret中" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-0.5" y="1743" width="120" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oxNQAoPYV9vJhSYu_cqy-2" target="oxNQAoPYV9vJhSYu_cqy-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="326" y="1679" as="sourcePoint" />
+            <mxPoint x="376" y="1629" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-8" value="usertrap" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="105" y="1714" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-9" value="swtch" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-53" y="1466" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-11" value="scheduler" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-44" y="1201" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-12" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="-46" y="1980" width="226" height="243" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-13" value="得到当前进程的trapframe，并设立异常向量入口，内核栈指针指向栈底，以及设立异常处理函数usertrap，同时将trapframe中保存的sepc的值给恢复到对应的寄存器中，最后进入到userret函数中，参数就是该进程的trapframe" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-0.5" y="2015" width="120" height="189" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="oxNQAoPYV9vJhSYu_cqy-6" target="oxNQAoPYV9vJhSYu_cqy-13">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="315" y="1979" as="sourcePoint" />
+            <mxPoint x="365" y="1929" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-15" value="usertrapret" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="98" y="1985" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-16" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+          <mxGeometry x="-46" y="2245" width="227" height="243" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-17" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oxNQAoPYV9vJhSYu_cqy-13" target="oxNQAoPYV9vJhSYu_cqy-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="369" y="2216" as="sourcePoint" />
+            <mxPoint x="419" y="2166" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-18" value="恢复所有的trapframe中保存的寄存器，并根据sepc的值返回到程序一开始遇到时钟中断之前执行的地址，即接着之前暂停的程序继续执行，就好像没有发生调度" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-0.5" y="2283" width="120" height="141" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-19" value="userret" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="98" y="2249" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oxNQAoPYV9vJhSYu_cqy-20" value="结论，发生中断后，此时进入到内核态，当前进程先是将trapframe内容进行保存，然后发现是时钟中断需要切换调度的进程，于是接下来保存上下文，于是借助主进程进行调度的选择，最终选择到一个就绪的进程，然后恢复它的上下文，然后恢复trapframe内容，最终调用sret回到用户态" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-145" y="2457" width="452" height="181" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
