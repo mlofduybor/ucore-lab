@@ -10,3 +10,7 @@ kernel_app.ld
 *.d
 *.asm
 *.sym
+.cache/
+compile_commands.json
+
+
