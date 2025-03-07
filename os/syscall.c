@@ -83,6 +83,49 @@ uint64 sys_sbrk(int n)
 */
 
 
+int sys_mmap(void* start, unsigned long long len, int port, int flag, int fd) {
+        uint64 addr_start = (uint64) start;
+        if (addr_start % PAGE_SIZE != 0) return -1;
+        if (len > 1024 * 1024 * 1024) return -1;
+        if ((port & (~0x7)) != 0) return -1;
+        if ((port & 0x7) == 0) return -1;
+        if (len == 0) return 0;
+  		uint64 last = PGROUNDDOWN(addr_start + len - 1);
+        char *mem;
+        struct proc *p = curr_proc();
+        for (uint64 i = addr_start; i <= last; i += PGSIZE) {
+                mem = kalloc();
+                if (mem == 0) return -1; // 这里没有考虑页回收
+                memset(mem, 0, PGSIZE);
+                if (mappages(p->pagetable, i, PGSIZE, (uint64)mem, (port<<1)|PTE_U) != 0) {
+                        return -1;
+                }
+				// printf("%x %x\n", i, last);
+        }
+        return 0;
+}
+
+
+
+
+
+
+
+
+
+int sys_munmap(void* start, unsigned long long len) {
+        struct proc *p = curr_proc();
+        uint64 addr_start = (uint64)start;
+        if (addr_start % PGSIZE != 0) return -1;
+        uint64 last = PGROUNDDOWN(addr_start + len - 1);
+        int npages = (last - addr_start + PGSIZE) / PGSIZE;
+		if (uvmmunmap(p->pagetable, addr_start, npages) != 0){
+			return -1;
+		}
+        return 0;
+}
+
+
 
 uint64 sys_task_info(TaskInfo *ti){
 
@@ -151,6 +194,13 @@ void syscall()
 		ret = sys_task_info((TaskInfo *)args[0]);
 		break;
 
+	case SYS_mmap:
+		ret = sys_mmap((void *)args[0], (unsigned long long)args[1], (int)args[2], (int)args[3], (int)args[4]);
+		break;
+
+	case SYS_munmap:
+		ret = sys_munmap((void *)args[0], (unsigned long long)args[1]);
+		break;
 
 	default:
 		ret = -1;

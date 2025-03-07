@@ -340,3 +340,24 @@ uint64 uvmdealloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz)
         return newsz;
 }
 
+
+
+
+
+int uvmmunmap(pagetable_t pagetable, uint64 va, uint64 npages) {
+	pte_t *pte;
+	for (uint64 a = va; a < va + npages * PGSIZE; a += PGSIZE) {
+			if ((pte = walk(pagetable, a, 0)) == 0)
+        			return -1;
+            if ((*pte & PTE_V) != 0) {
+            if (PTE_FLAGS(*pte) == PTE_V)
+                panic("munmap: not a leaf");
+			uint64 pa = PTE2PA(*pte);
+			kfree((void *)pa);
+    		}
+        	if ((*pte & PTE_V) == 0) return -1;
+            *pte = 0;		
+	}
+	return 0;
+}
+

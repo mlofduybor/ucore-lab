@@ -19,4 +19,6 @@ int copyinstr(pagetable_t, char *, uint64, uint64);
 uint64 uvmalloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz, int xperm);
 uint64 uvmdealloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz);
 
+int uvmmunmap(pagetable_t pagetable, uint64 va, uint64 npages);
+
 #endif // VM_H
