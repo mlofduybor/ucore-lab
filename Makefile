@@ -118,7 +118,7 @@ QEMUGDB = $(shell if $(QEMU) -help | grep -q '^-gdb'; \
 debug: build/kernel .gdbinit
 	$(QEMU) $(QEMUOPTS) -S $(QEMUGDB) &
 	sleep 1
-	$(GDB)
+	$(GDB) build/kernel
 
 CHAPTER ?= $(shell git rev-parse --abbrev-ref HEAD | grep -oP 'ch\K[0-9]')
 
