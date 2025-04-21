@@ -95,7 +95,21 @@ uint64 sys_wait(int pid, uint64 va)
 uint64 sys_spawn(uint64 va)
 {
 	// TODO: your job is to complete the sys call
-	return -1;
+    struct proc *p = curr_proc();
+    char name[200];
+    copyinstr(p->pagetable, name, va, 200);
+
+    int id = get_id_by_name(name);
+    if (id < 0)
+        return -1;
+    struct proc *np = allocproc();
+    if (np == NULL) {
+        panic("allocproc\n");
+    }
+	np->parent = p;
+    loader(id, np);
+    add_task(np);
+	return np->pid;
 }
 
 uint64 sys_set_priority(long long prio){
