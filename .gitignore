@@ -13,3 +13,5 @@ kernel_app.ld
 *.sym
 nfs/*.img
 nfs/fs
+.cache/
+compile_commands.json
