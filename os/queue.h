@@ -4,15 +4,21 @@
 
 // TODO: change the queue to a priority queue sorted by priority
 
+struct queue_data {
+	int index_pool;
+	int priority;
+};
+
 struct queue {
-	int data[QUEUE_SIZE];
-	int front;
-	int tail;
-	int empty;
+	struct queue_data data[QUEUE_SIZE + 1];
+	// int front;
+	// int tail;
+	int size ;
+	// int empty;
 };
 
 void init_queue(struct queue *);
-void push_queue(struct queue *, int);
+void push_queue(struct queue *, int ,int );
 int pop_queue(struct queue *);
 
 #endif // QUEUE_H

@@ -2,6 +2,7 @@
 #include "console.h"
 #include "defs.h"
 #include "loader.h"
+#include "proc.h"
 #include "syscall_ids.h"
 #include "timer.h"
 #include "trap.h"
@@ -114,7 +115,16 @@ uint64 sys_spawn(uint64 va)
 
 uint64 sys_set_priority(long long prio){
     // TODO: your job is to complete the sys call
-    return -1;
+	struct  proc *p = curr_proc();
+	if (prio >= 2 && prio <= 2147483647) {
+		p->priority = prio;
+		p->pass = BigStride	/ prio;	
+		//printf("p->priority: %d p->pass:%d\n", p->priority, p->pass);
+		return prio;
+	}
+	else {
+		return -1;
+	}
 }
 
 
@@ -173,8 +183,11 @@ void syscall()
 		ret = sys_spawn(args[0]);
 		break;
 	case SYS_sbrk:
-                ret = sys_sbrk(args[0]);
-                break;
+    	ret = sys_sbrk(args[0]);
+        break;
+	case SYS_setpriority:
+		ret = sys_set_priority(args[0]);
+		break;
 	default:
 		ret = -1;
 		errorf("unknown syscall %d", id);

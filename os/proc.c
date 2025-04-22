@@ -58,7 +58,7 @@ struct proc *fetch_task()
 
 void add_task(struct proc *p)
 {
-	push_queue(&task_queue, p - pool);
+	push_queue(&task_queue, p - pool, p->stride);
 	debugf("add task %d(pid=%d) to task queue\n", p - pool, p->pid);
 }
 
@@ -91,6 +91,9 @@ found:
 	memset((void *)p->trapframe, 0, TRAP_PAGE_SIZE);
 	p->context.ra = (uint64)usertrapret;
 	p->context.sp = p->kstack + KSTACK_SIZE;
+	p->priority = 16;
+	p->stride = 0;
+	p->pass = BigStride / 16;
 	return p;
 }
 
@@ -120,6 +123,9 @@ void scheduler()
 		if (p == NULL) {
 			panic("all app are over!\n");
 		}
+		p->stride = p->stride + p->pass;
+		//printf("%d %d\n", p->pid, p->stride);
+		// printf("prio: %d stride: %d\n", p->priority, p->stride);	
 		tracef("swtich to proc %d", p - pool);
 		p->state = RUNNING;
 		current_proc = p;
