@@ -58,6 +58,13 @@ static uint balloc(uint dev)
 	struct buf *bp;
 
 	bp = 0;
+	// for (b = 0;b<sb.size;b+=BPB){
+	// 	bp = bread(dev, BBLOCK(b, sb));
+	// 	for (bi = 0;bi<BPB && b+bi < sb.size;bi+=8) {
+	// 		printf("%d ", bp->data[bi/8]);
+	// 	}
+	// 	printf("\n");
+	// }
 	for (b = 0; b < sb.size; b += BPB) {
 		bp = bread(dev, BBLOCK(b, sb));
 		for (bi = 0; bi < BPB && b + bi < sb.size; bi++) {
@@ -114,8 +121,10 @@ struct inode *ialloc(uint dev, short type)
 		if (dip->type == 0) { // a free inode
 			memset(dip, 0, sizeof(*dip));
 			dip->type = type;
+			dip->nlink = 1;
 			bwrite(bp);
 			brelse(bp);
+			//printf("dip : %d\n", dip->nlink);
 			return iget(dev, inum);
 		}
 		brelse(bp);
@@ -136,6 +145,7 @@ void iupdate(struct inode *ip)
 	dip = (struct dinode *)bp->data + ip->inum % IPB;
 	dip->type = ip->type;
 	dip->size = ip->size;
+	dip->nlink = ip->nlink;	
 	// LAB4: you may need to update link count here
 	memmove(dip->addrs, ip->addrs, sizeof(ip->addrs));
 	bwrite(bp);
@@ -189,6 +199,7 @@ void ivalid(struct inode *ip)
 		dip = (struct dinode *)bp->data + ip->inum % IPB;
 		ip->type = dip->type;
 		ip->size = dip->size;
+		ip->nlink = dip->nlink;
 		// LAB4: You may need to get lint count here
 		memmove(ip->addrs, dip->addrs, sizeof(ip->addrs));
 		brelse(bp);
@@ -207,8 +218,9 @@ void ivalid(struct inode *ip)
 // case it has to free the inode.
 void iput(struct inode *ip)
 {
+	//printf("ref: %d, ip->nlink: %d, valid = %d\n", ip->ref, ip->nlink, ip->valid);
 	// LAB4: Unmark the condition and change link count variable name (nlink) if needed
-	if (ip->ref == 1 && ip->valid && 0 /*&& ip->nlink == 0*/) {
+	if (ip->ref == 1 && ip->valid && ip->nlink == 0) {
 		// inode has no links and no other references: truncate and free.
 		itrunc(ip);
 		ip->type = 0;
@@ -429,6 +441,44 @@ int dirlink(struct inode *dp, char *name, uint inum)
 }
 
 // LAB4: You may want to add dirunlink here
+
+// Remove a directory entry (name, inum) from the directory dp.
+int dirunlink(struct inode *dp, char *name) {
+    uint off;
+    struct dirent de;
+	struct inode *ip;
+
+    if (dp->type != T_DIR)
+        panic("dirunlink not DIR");
+
+
+	if ((ip = dirlookup(dp, name, 0)) == 0) {
+		iput(ip);
+		return -1;
+	}
+	
+
+    for (off = 0; off < dp->size; off += sizeof(de)) {
+        if (readi(dp, 0, (uint64)&de, off, sizeof(de)) != sizeof(de))
+            panic("dirunlink read");
+        if (de.inum == 0)
+            continue;
+        if (strncmp(name, de.name, DIRSIZ) == 0) {
+            // Found the entry, clear it
+            memset(&de, 0, sizeof(de));
+            if (writei(dp, 0, (uint64)&de, off, sizeof(de)) != sizeof(de))
+                panic("dirunlink write");
+			iput(ip);
+            return 0;
+        }
+    }
+
+	iput(ip);
+
+    return -1; // Entry not found
+}
+
+
 
 //Return the inode of the root directory
 struct inode *root_dir()

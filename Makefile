@@ -123,10 +123,11 @@ QEMUGDB = $(shell if $(QEMU) -help | grep -q '^-gdb'; \
 	then echo "-gdb tcp::15234"; \
 	else echo "-s -p 15234"; fi)
 
-debug: build/kernel .gdbinit $(F)/fs-copy.img
-	$(QEMU) $(QEMUOPTS) -S $(QEMUGDB) &
-	sleep 1
-	$(GDB)
+qemu: build/kernel .gdbinit $(F)/fs-copy.img
+	$(QEMU) $(QEMUOPTS) -S $(QEMUGDB) 
+
+gdb: build/kernel .gdbinit $(F)/fs-copy.img
+	$(GDB) ./build/kernel
 
 CHAPTER ?= $(shell git rev-parse --abbrev-ref HEAD | grep -oP 'ch\K[0-9]')
 

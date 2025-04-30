@@ -74,6 +74,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Usage: mkfs fs.img files...\n");
 		exit(1);
 	}
+	//printf("-------------------------------------------%ld\n", sizeof(struct dinode));
 	assert((BSIZE % sizeof(struct dinode)) == 0);
 	fsfd = open(argv[1], O_RDWR | O_CREAT | O_TRUNC, 0666);
 	if (fsfd < 0) {
@@ -204,6 +205,7 @@ uint ialloc(ushort type)
 	bzero(&din, sizeof(din));
 	din.type = xshort(type);
 	din.size = xint(0);
+	din.nlink = 1;
 	// LAB4: You may want to init link count here
 	winode(inum, &din);
 	return inum;
