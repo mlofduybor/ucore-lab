@@ -63,6 +63,14 @@ struct proc {
 	struct mutex mutex_pool[LOCK_POOL_SIZE];
 	struct semaphore semaphore_pool[LOCK_POOL_SIZE];
 	struct condvar condvar_pool[LOCK_POOL_SIZE];
+
+	int enable_deadlock_detect;
+
+	int available[LOCK_POOL_SIZE];
+	int allocation[NTHREAD][LOCK_POOL_SIZE];
+	int request[NTHREAD][LOCK_POOL_SIZE];
+
+
 	// LAB5: (1) Define your variables for deadlock detect here.
 	//			 You may need a flag to record if detection enabled,
 	//       and some arrays for detection algorithm.
